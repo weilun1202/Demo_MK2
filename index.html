@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyIntroduce</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .header {
+            background-color: black;
+        }
+
+        .header .container_header {
+            display: flex;
+            /* 垂直居中 */
+            /* align-items: center; */
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header .logo {
+            width: 100px;
+        }
+
+        .header .logo img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .header .nav {
+            margin: auto;
+        }
+
+        .header .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            padding: 5px 1em;
+            position: relative;
+            display: inline-block;
+            /* 效果呈現(原始) */
+            transform: translateY(0px);
+            transition: .3s;
+        }
+
+        /* 觸摸效果 (上浮效果) */
+        .header .nav a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 觸摸效果 (線左右伸展效果) */
+        .header .nav a:after {
+            content: "";
+            position: absolute;
+            /* left 和 richt 一開始隱藏 */
+            left: 50%;
+            right: 50%;
+            bottom: -5px;
+            height: 0%;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+        }
+
+        .header .nav a:hover:after {
+            left: 0;
+            right: 0;
+        }
+
+        /* ----------------------------------------------- */
+
+        .banner {
+            width: 100%;
+            /* vh 視窗高度，可以改成700px，底下有留白  */
+            height: 100vh;
+            background-color: #ccc;
+            background:
+                linear-gradient(115deg, #4F90EB 50%, transparent 50%) center center / 100% 100%,
+                url(img/banner_S__94208011.jpg) right center / auto 100%;
+        }
+
+        .container_banner {
+            width: 100%;
+            max-width: 1440px;
+            height: 100%;
+            margin: auto;
+        }
+
+        .banner-txt {
+            height: 100%;
+            display: flex;
+            /* 水平變成垂直 */
+            flex-direction: column;
+            /* 垂直置中 */
+            justify-content: center;
+            /* 讓分隔線不要滿版 */
+            align-items: flex-start;
+        }
+
+        .banner-txt h1 {
+            font-size: 80px;
+            /* 分隔線 */
+            border-bottom: 1px solid #333;
+            /* 字體粗細 */
+            font-weight: 900;
+            /* 每行間隔 */
+            padding-bottom: .3em;
+            margin-bottom: 0.3em;
+        }
+
+        .banner-txt h1 small {
+            /* 「如何首頁切版 - 袈裟切」換行 */
+            display: block;
+            font-size: 53px;
+        }
+
+        .banner-txt h2 {
+            font-size: 53px;
+        }
+
+        .banner-txt p {
+            font-size: 30px;
+        }
+
+        /* ----------------------------------------------- */
+
+
+        .about {
+            width: 1200px;
+            margin: auto;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+
+        .about h1 {
+            width: 100%;
+            /* 不要有收縮 */
+            flex-shrink: 0;
+            box-sizing: border-box;
+            font-size: 70px;
+            color: #50C1EB;
+            margin-bottom: .5em;
+            display: flex;
+        }
+
+        .about h1::before,
+        .about h1::after {
+            content: "";
+            display: block;
+            width: 4em;
+            height: 3px;
+            /* 自動填滿 */
+            flex-grow: 1;
+            background-color: #aaa;
+            margin: auto;
+        }
+
+        /* 線條距離 */
+        .about h1::before {
+            margin-right: 1em;
+        }
+
+        .about h1::after {
+            margin-left: 1em;
+        }
+
+        .about .txt {
+            /* 不要有收縮 */
+            flex-shrink: 0;
+            box-sizing: border-box;
+            color: black;
+            line-height: 2;
+            font-size: 23px;
+            margin: 0 100px;
+        }
+
+        .about .txt p {
+            transition: .3s;
+        }
+
+        .about .txt p:hover {
+            color: #4F90EB;
+        }
+
+        .about .skill {
+            margin-left: 300px;
+            text-align: left;
+            font-size: 30px;
+        }
+
+        /* .about .txt p {
+            margin-bottom: 100px;
+        } */
+
+        /* ----------------------------------------------- */
+
+        .footer {
+            padding: 150px 0 0 0;
+            background: linear-gradient(-40deg, blue, #5EEBE3);
+        }
+
+        .footer .container_footer {
+            display: flex;
+            width: 1200px;
+            margin: auto;
+        }
+
+        /* 拉出距離 */
+        .footer-item {
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .footer-item h4 {
+            text-align: center;
+            font-size: 24px;
+            color: beige;
+            /* 底線 */
+            border-bottom: 1px dotted #fff;
+            /* 底線上下間距 */
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+
+        .footer-item nav {
+            display: flex;
+            /* 選項直排 */
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-item nav a {
+            color: white;
+            line-height: 1.4;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .footer-item nav a:hover {
+            color: orange;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin: 150px 0 0;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ************************** -->
+
+    <div class="header">
+        <div class="container_header">
+            <h1 class="logo">
+                <a href="img/logo 01-1.png" class="logo">
+                    <img src="img/logo 01-2.png">
+                </a>
+            </h1>
+
+            <nav class="nav">
+                <a href="index.html">關於</a>
+                <a href="work.html">學經歷</a>
+                <a href="portfolio.html">證照與證書</a>
+                <a href="2019_working_holiday.html">旅遊</a>
+                <a href="project.html">專案</a>
+                <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ************************** -->
+
+    <div class="banner">
+        <div class="container_banner">
+            <div class="banner-txt">
+                <h1>
+                    翁偉倫
+                    <small>Weng Wei-Lun's introduce</small>
+                </h1>
+                <h2>自學無涯，腳踏實地</h2>
+                <p>文科生也想當前端工程師
+                    <br>
+                    可以讓我來，我可以做得比樣板網站更精緻！
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ************************** -->
+
+    <div class="about">
+        <div class="container_about">
+            <h1>我的近況</h1>
+            <div class="txt">
+                <p>我熱愛旅行，勇於走出舒適圈，這份愛讓我對於在國外獨自生活充滿信心。2023年3月成功考取<strong>「華語導遊人員」、「日語領隊人員資格」</strong>。這些證書不僅是我的專業認證，更是總結我在語言、旅遊方面的里程碑。</p>
+                <p>不斷追求進步，今年參加勞動部的<strong>「嵌入式機器學習開發實作班」</strong>，深入學習Python程式語言，訓練AI，了解當下的科技脈動，展望更遙遠的未來。</p>
+                <p>此外，為了能藉由科技應用展現自我，透過自學<strong> HTML 和 CSS </strong>，練習各種切版以及各式各樣CSS應用，這也是我未來前進的方向。</p>
+                <p>這一路走來，我深切體會到學習和成長的價值，我深信這些努力將為我開啟更多精彩的旅程。我期待能夠將我的多元專業帶到不同的地方，與人互動、交流，志同道合的夥伴們一起工作，建立公司團隊的成就。</p>
+            </div>   
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="container_about">
+            <h1>技能應用</h1>
+            <div class="skill">
+                <div class="txt">
+                    <p><strong>語言能力</strong>：日文檢定 N2、商用日文 BJT-J3</p>
+                    <p><strong>前端網頁</strong>：HTML + CSS</p>
+                    <p><strong>程式語言</strong>：Python基礎操作</p>
+                    <p><strong>文書處理</strong>：Excel 樞紐分析基本操作 + VLOOKUP</p>
+                    <p><strong>影片剪輯</strong>：影片編輯、字幕編輯</p>
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+    <!-- ************************** -->
+
+    <div class="footer">
+        <div class="container_footer">
+            <div class="footer-item">
+                <h4>關於</h4>
+                <nav>
+                    <a href="index.html">我的近況</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>學經歷</h4>
+                <nav>
+                    <a href="work.html#school">求學期間</a>
+                    <a href="work.html#work">工作就業</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>證照</h4>
+                <nav>
+                    <a href="portfolio.html#technology">科技</a>
+                    <a href="portfolio.html#travel">旅遊</a>
+                    <a href="portfolio.html#language">語言</a>
+                    <a href="portfolio.html#medical">醫療</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>旅遊</h4>
+                <nav>
+                    <a href="2019_working_holiday.html">日本旅遊</a>
+                </nav>
+            </div>
+            <div class="footer-item footer-subs">
+                <h4>專案</h4>
+                <nav>
+                    <a href="project.html#project01">團隊專案</a>
+                    <a href="project.html#project02">個人專案</a>
+                </nav>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2023
+            Weng Wei-Lun
+        </div>
+    </div>
+
+</body>
+
+</html>

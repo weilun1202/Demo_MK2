@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學經歷</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .header {
+            background-color: black;
+            margin-bottom: 3em;
+        }
+
+        .header .container_header {
+            display: flex;
+            /* 垂直居中 */
+            /* align-items: center; */
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header .logo {
+            width: 100px;
+        }
+
+        .header .logo img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .header .nav {
+            margin: auto;
+        }
+
+        .header .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            padding: 5px 1em;
+            position: relative;
+            display: inline-block;
+            /* 效果呈現(原始) */
+            transform: translateY(0px);
+            transition: .3s;
+        }
+
+        /* 觸摸效果 (上浮效果) */
+        .header .nav a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 觸摸效果 (線左右伸展效果) */
+        .header .nav a:after {
+            content: "";
+            position: absolute;
+            /* left 和 richt 一開始隱藏 */
+            left: 50%;
+            right: 50%;
+            bottom: -5px;
+            height: 0%;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+        }
+
+        .header .nav a:hover:after {
+            left: 0;
+            right: 0;
+        }
+        
+/* ----------------------------------------------- */
+
+        .title {
+            width: 1200px;
+            margin: auto;
+            text-align: center;
+            margin-top: 1em;
+        }
+
+        .title h1 {
+            width: 100%;
+            /* 不要有收縮 */
+            flex-shrink: 0;
+            box-sizing: border-box;
+            font-size: 70px;
+            color: #50C1EB;
+            margin-bottom: .5em;
+            display: flex;
+        }
+
+        .title h1::before,
+        .title h1::after {
+            content: "";
+            display: block;
+            width: 4em;
+            height: 3px;
+            /* 自動填滿 */
+            flex-grow: 1;
+            background-color: #aaa;
+            margin: auto;
+        }
+
+        /* 線條距離 */
+        .title h1::before {
+            margin-right: 1em;
+        }
+
+        .title h1::after {
+            margin-left: 1em;
+        }
+
+/* ----------------------------------------------- */
+
+        .school {
+            width: 1200px;
+            display: flex;
+            margin: auto;
+        }
+
+        .wrap_school {
+            width: 566px;
+            margin: 15px;
+            text-align: center;
+            background-color: #fff;
+            /* 邊框線條 */
+            border: 2px solid #ccc;
+            /* 碰觸時，往上移動 相關設定 */
+            transform: translateY(0px);
+            transition: .5s;
+        }
+
+        .wrap_school img {
+            width: 60%;
+            /* 倒三角形間隔消除 */
+            vertical-align: middle;
+        }
+
+        .wrap_school h2 {
+            /* 標題下方的線 */
+            border-bottom: 1px solid #888;
+            /* 線的間距 */
+            padding-bottom: .3em;
+            margin-bottom: .4em;
+
+            font-weight: 900;
+            /* 碰觸時，文字變色 延遲 */
+            transition: .5s;
+        }
+
+        .wrap_school p {
+            line-height: 1.5;
+            font-weight: 00;
+            /* 碰觸時，文字變色 延遲 */
+            transition: .5s;
+        }
+
+        .wrap_school .txt {
+            padding: 20px;
+            position: relative;
+        }
+
+        .wrap_school .txt:before {
+            /* 倒三角形區域設定 */
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 0;
+            top: 0;
+            border-top: 50px solid transparent;
+            border-left: 283px solid white;
+            border-right: 283px solid white;
+            /* 關鍵：倒三角形區域上推 */
+            transform: translateY(-100%);
+        }
+
+        /* 碰觸時，往上移動 */
+        .wrap_school:hover {
+            transform: translateY(-50px);
+        }
+
+        /* 碰觸時，顏色更換 (文字區域) */
+        .wrap_school:hover .txt {
+            /* 漸層顏色設定 */
+            background-image: linear-gradient(0deg, #505FEB, #5EEBE3);
+        }
+
+        /* 碰觸時，顏色更換 (倒三角剩餘區域) */
+        .wrap_school:hover .txt:before {
+            border-left: 283px solid #5EEBE3;
+            border-right: 283px solid #5EEBE3;
+        }
+
+        /* 碰觸時，文字變色 */
+        .wrap_school:hover h2 {
+            color: azure;
+            border-bottom-color: azure;
+        }
+
+        .wrap_school:hover p {
+            color: azure;
+            border-bottom-color: azure;
+        }
+
+/* ----------------------------------------------- */
+
+        .work {
+            margin-bottom: 1em;
+        }
+
+        .col {
+            width: 1200px;
+            display: flex;
+            margin: auto;
+            text-align: center;
+            background-color: transparent;
+        }
+
+        /* .wrap_work {
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        } */
+
+        .company {
+            /* 如果要變成兩欄，數值要修改 */
+            width: 568px;
+            margin: 15px;
+            display: flex;
+            background-color: rgba(250, 250, 250, .5);
+            border: 1px solid #ccc;
+
+            /* 陰影： X軸、Y軸、模糊程度、顏色 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+            transition: .5s;
+        }
+
+        .company .pic {
+            width: 50%;
+        }
+
+        .company .pic img {
+            /* width: 300px; */
+            width: 100%;
+            height: 100%;
+            /* 防止圖片變形 */
+            object-fit: cover;
+        }
+
+        #company .pic .fb {
+            width: 300px;
+        }
+
+        .company .txt {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            /* 以下為文字居中處理 */
+            display: flex;
+            /* 文字方向 */
+            flex-direction: column;
+            /* justify-content: center; */
+            
+           
+        }
+
+        .company .txt h2 {
+            font-weight: 700px;
+            margin-bottom: .4em;
+        }
+
+        .company .txt p {
+            font-weight: 200px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .company:hover {
+            /* background-color: #50C1EB; */
+            color: #4F90EB;
+        }
+
+/* ----------------------------------------------- */
+
+        .footer {
+            padding: 150px 0 0 0;
+            background: linear-gradient(-40deg, blue, #5EEBE3);
+        }
+
+        .footer .container_footer {
+            display: flex;
+            width: 1200px;
+            margin: auto;
+        }
+
+        /* 拉出距離 */
+        .footer-item {
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .footer-item h4 {
+            text-align: center;
+            font-size: 24px;
+            color: beige;
+            /* 底線 */
+            border-bottom: 1px dotted #fff;
+            /* 底線上下間距 */
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+
+        .footer-item nav {
+            display: flex;
+            /* 選項直排 */
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-item nav a {
+            color: white;
+            line-height: 1.4;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .footer-item nav a:hover {
+            color: orange;
+        }
+
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin: 150px 0 0;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ************************** -->
+
+    <div class="header">
+        <div class="container_header">
+            <h1 class="logo">
+                <a href="img/logo 01-1.png" class="logo">
+                    <img src="img/logo 01-2.png">
+                </a>
+            </h1>
+
+            <nav class="nav">
+                <a href="index.html">關於</a>
+                <a href="work.html">學經歷</a>
+                <a href="portfolio.html">證照與證書</a>
+                <a href="2019_working_holiday.html">旅遊</a>
+                <a href="project.html">專案</a>
+                <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ************************** -->
+
+
+    <div class="title">
+        <h1 id="school">學歷</h1>
+    </div>
+
+    <!-- ************************** -->
+
+    <div class="school">
+
+        <div class="wrap_school">
+
+            <img src="img/school tz.jpg" alt="">
+            <div class="txt">
+                <h2>慈濟大學 東方語文學系<br>日文組</h2>
+                <p>2012 / 9 ~ 2016 / 6<br>
+                    1.諮商中心志工團副團長<br>
+                    2.快樂健康社社員<br>
+                    3.行政院科技部大專生研究計畫<br>
+                    4.尚絅大學華語遊學營隊隊</p>
+            </div>
+        </div>
+        <div class="wrap_school">
+            <img src="img/school 淡水.jpg" alt="">
+            <div class="txt">
+                <h2>新北市立淡水高級商工<br>資訊科</h2>
+                <p>2009 / 9 ~ 2012 / 6<br>
+                    1.動漫社副社長<br>
+                    2.丙級 電腦軟體應用<br>
+                    3.丙級 網頁設計
+                    4.日本大谷高校參訪志工</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ************************** -->
+
+    <div class="title">
+        <h1 id="work">工作經歷</h1>
+    </div>
+
+    <!-- ************************** -->
+
+    <div class="work">
+        <div class="col">
+            <div class="wrap_work">
+                <!-- 第一份 -->
+                <div class="company">
+                    <div class="pic" id="fb">
+                        <img src="img/logo Fubon.png" alt="">
+                    </div>
+                    <div class="txt">
+                        <h2>富邦人壽保險<br>股份有限公司</h2>
+                        <p>2020 / 02 ~ 2021 / 04<br>
+                            1.保險公司文件審核、受理、建檔、掃描、核對、打包、郵寄<br>
+                            2.提供客戶專業且量身打造的保險規劃，全方位人生各個階段的需求<br>
+                            3.針對個人可能面臨的風險，解說及銷售各種不同類型的保險<br>
+                            4.協助客戶申請理賠、申辦信用卡</p>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_work">
+                <!-- 第二份 -->
+                <div class="company">
+                    <div class="pic">
+                        <img src="img/logo 民宿.jpg" alt="">
+                    </div>
+                    <div class="txt">
+                        <h2>日本京都<br>上京町民宿</h2>
+                        <p>2019 / 04 ~ 2019 / 07<br>
+                            1.館內環境清潔維護與設備維護<br>
+                            2.盤點備品相關物品<br>
+                            3.接待客人並提供相關服務<br>
+                            4.客房設備、飯店設施說明與介紹<br>
+                            5.提供旅遊諮詢<br>
+                            6.櫃檯行政工作與主管交辦事項</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="wrap_work">
+                <!-- 第三份 -->
+                <div class="company">
+                    <div class="pic">
+                        <img src="img/logo GALA.png" alt="">
+                    </div>
+                    <div class="txt">
+                        <h2>GALA<br>湯沢スキー場</h2>
+                        <p>2018 / 12 ~ 2019 / 04<br>
+                            1.以中、英、日文進行園區引導<br>
+                            2.操作吊椅，維護遊客安全<br>
+                            3.遺失物收領<br>
+                            4.高空機械維護</p>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_work">
+                <!-- 第四份 -->
+                <div class="company">
+                    <div class="pic">
+                        <img src="img/logo imc.jpg" alt="">
+                    </div>
+                    <div class="txt">
+                        <h2>玉山銀行<br>精英人力派遣</h2>
+                        <p>2018 / 01 ~ 2018 / 10<br>
+                            1.分類、審核文件資料，並輸入建檔<br>
+                            2.整理文件資料，並歸檔保存<br>
+                            3.支援日常行政庶務工作<br>
+                            4.債權憑證掃瞄建檔</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ************************** -->
+
+    <div class="footer">
+        <div class="container_footer">
+            <div class="footer-item">
+                <h4>關於</h4>
+                <nav>
+                    <a href="index.html">我的近況</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>學經歷</h4>
+                <nav>
+                    <a href="work.html#school">求學期間</a>
+                    <a href="work.html#work">工作就業</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>證照</h4>
+                <nav>
+                    <a href="portfolio.html#technology">科技</a>
+                    <a href="portfolio.html#travel">旅遊</a>
+                    <a href="portfolio.html#language">語言</a>
+                    <a href="portfolio.html#medical">醫療</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>旅遊</h4>
+                <nav>
+                    <a href="2019_working_holiday.html">日本旅遊</a>
+                </nav>
+            </div>
+            <div class="footer-item footer-subs">
+                <h4>專案</h4>
+                <nav>
+                    <a href="project.html#project01">團隊專案</a>
+                    <a href="project.html#project02">個人專案</a>
+                </nav>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2023
+            Weng Wei-Lun
+        </div>
+    </div>
+
+</body>
+
+</html>

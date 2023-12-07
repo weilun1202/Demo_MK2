@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅遊</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .header {
+            background-color: black;
+            margin-bottom: 3em;
+        }
+
+        .header .container_header {
+            display: flex;
+            /* 垂直居中 */
+            /* align-items: center; */
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header .logo {
+            width: 100px;
+        }
+
+        .header .logo img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .header .nav {
+            margin: auto;
+        }
+
+        .header .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            padding: 5px 1em;
+            position: relative;
+            display: inline-block;
+            /* 效果呈現(原始) */
+            transform: translateY(0px);
+            transition: .3s;
+        }
+
+        /* 觸摸效果 (上浮效果) */
+        .header .nav a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 觸摸效果 (線左右伸展效果) */
+        .header .nav a:after {
+            content: "";
+            position: absolute;
+            /* left 和 richt 一開始隱藏 */
+            left: 50%;
+            right: 50%;
+            bottom: -5px;
+            height: 0%;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+        }
+
+        .header .nav a:hover:after {
+            left: 0;
+            right: 0;
+        }
+
+        /* ----------------------------------------------- */
+
+        .title {
+            width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .title h1 {
+            width: 100%;
+            /* 不要有收縮 */
+            flex-shrink: 0;
+            box-sizing: border-box;
+            font-size: 70px;
+            color: #50C1EB;
+            margin-bottom: .3em;
+            display: flex;
+        }
+
+        .title h1::before,
+        .title h1::after {
+            content: "";
+            display: block;
+            width: 4em;
+            height: 3px;
+            /* 自動填滿 */
+            flex-grow: 1;
+            background-color: #aaa;
+            margin: auto;
+        }
+
+        /* 線條距離 */
+        .title h1::before {
+            margin-right: 1em;
+        }
+
+        .title h1::after {
+            margin-left: 1em;
+        }
+
+        /* ----------------------------------------------- */
+
+        .main {
+            margin-bottom: 4em;
+        }
+
+        .container {
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
+        .trip_item {
+            width: 368px;
+            margin: 15px;
+            /* display: flex; */
+            background-color: rgba(250, 250, 250, .5);
+            border: 1px solid #ccc;
+
+            /* 陰影： X軸、Y軸、模糊程度、顏色 */
+            box-shadow: 0 10px 10px rgba(13, 2, 170, 0.5);
+        }
+
+        .trip_item .pic {
+            width: 100%;
+        }
+
+        .trip_item .pic img {
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            max-height: 600px;
+            /* 防止圖片變形 */
+            object-fit: cover;
+        }
+
+        .trip_item .txt {
+            margin-top: -10px;
+            padding: 20px;
+            box-sizing: border-box;
+            /* 以下為文字居中處理 */
+            display: flex;
+            /* 文字方向 */
+            flex-direction: column;
+            /* justify-content: center; */
+            transition: .4s;
+        }
+
+        .trip_item .txt h2 {
+            font-size: 40px;
+            font-weight: 700px;
+            text-align: center;
+            margin-bottom: .4em;
+        }
+
+        .trip_item .txt p {
+            font-size: 18px;
+            font-weight: 200px;
+        }
+
+        .trip_item .txt .btn {
+            line-height: 1.5em;
+            border: 1px solid grey;
+            padding: 0 1em;
+            /* 靠右 */
+            align-self: flex-end;
+            text-decoration: none;
+            /* 邊框圓弧 */
+            border-radius: 200px;
+            /* 放到最下方 */
+            margin-top: auto;
+            color: #aaa;
+        }
+
+        .trip_item:hover {
+            color: #777;
+            background-color: #50EBE3;
+        }
+
+        /* ----------------------------------------------- */
+
+        .footer {
+            padding: 150px 0 0 0;
+            background: linear-gradient(-40deg, blue, #5EEBE3);
+        }
+
+        .footer .container_footer {
+            display: flex;
+            width: 1200px;
+            margin: auto;
+        }
+
+        /* 拉出距離 */
+        .footer-item {
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .footer-item h4 {
+            text-align: center;
+            font-size: 24px;
+            color: beige;
+            /* 底線 */
+            border-bottom: 1px dotted #fff;
+            /* 底線上下間距 */
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+
+        .footer-item nav {
+            display: flex;
+            /* 選項直排 */
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-item nav a {
+            color: white;
+            line-height: 1.4;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .footer-item nav a:hover {
+            color: orange;
+        }
+
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin: 150px 0 0;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ************************** -->
+
+    <div class="header">
+        <div class="container_header">
+            <h1 class="logo">
+                <a href="img/logo 01-1.png" class="logo">
+                    <img src="img/logo 01-2.png">
+                </a>
+            </h1>
+
+            <nav class="nav">
+                <a href="index.html">關於</a>
+                <a href="work.html">學經歷</a>
+                <a href="portfolio.html">證照與證書</a>
+                <a href="2019_working_holiday.html">旅遊</a>
+                <a href="project.html">專案</a>
+                <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ************************** -->
+
+
+    <div class="title">
+        <h1>2019<br>日本打工度假</h1>
+    </div>
+
+    <!-- ************************** -->
+
+
+
+    <div class="main">
+
+        <div class="container">
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/battleship.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>佐世保</h2>
+                    <p>日期：2019年6月<br>
+                        活動：軍港巡禮，最後的武士</p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com奈良.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>奈良</h2>
+                    <p>日期：2019年11月<br>
+                        活動：鹿死誰手，仙貝爭奪<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com伊勢.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>伊勢</h2>
+                    <p>日期：2019年11月<br>
+                        活動：尋找八百萬神<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com岐阜.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>岐阜</h2>
+                    <p>日期：2019年4月<br>
+                        活動：聲之形<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com大原.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>大原</h2>
+                    <p>日期：2019年11月<br>
+                        活動：紅葉紛飛<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com天橋立.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>天橋立</h2>
+                    <p>日期：2019年5月<br>
+                        活動：日本三景<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com保津川.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>保津川</h2>
+                    <p>日期：2019年11月<br>
+                        活動：輕舟不外拋<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com鞍馬山.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>鞍馬山</h2>
+                    <p>日期：2019年11月<br>
+                        活動：天狗傳奇<br></p>
+                </div>
+            </div>
+
+            <div class="trip_item">
+                <div class="pic">
+                    <img src="img/com比叡山.jpg" alt="">
+                </div>
+                <div class="txt">
+                    <h2>比叡山</h2>
+                    <p>日期：2019年11月<br>
+                        活動：搶救天台宗<br></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ************************** -->
+
+    <div class="footer">
+        <div class="container_footer">
+            <div class="footer-item">
+                <h4>關於</h4>
+                <nav>
+                    <a href="index.html">我的近況</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>學經歷</h4>
+                <nav>
+                    <a href="work.html#school">求學期間</a>
+                    <a href="work.html#work">工作就業</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>證照</h4>
+                <nav>
+                    <a href="portfolio.html#technology">科技</a>
+                    <a href="portfolio.html#travel">旅遊</a>
+                    <a href="portfolio.html#language">語言</a>
+                    <a href="portfolio.html#medical">醫療</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>旅遊</h4>
+                <nav>
+                    <a href="2019_working_holiday.html">日本旅遊</a>
+                </nav>
+            </div>
+            <div class="footer-item footer-subs">
+                <h4>專案</h4>
+                <nav>
+                    <a href="project.html#project01">團隊專案</a>
+                    <a href="project.html#project02">個人專案</a>
+                </nav>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2023
+            Weng Wei-Lun
+        </div>
+    </div>
+
+</body>
+
+</html>

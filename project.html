@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專案</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .header {
+            background-color: black;
+            margin-bottom: 3em;
+        }
+
+        .header .container_header {
+            display: flex;
+            /* 垂直居中 */
+            /* align-items: center; */
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header .logo {
+            width: 100px;
+        }
+
+        .header .logo img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .header .nav {
+            margin: auto;
+        }
+
+        .header .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            padding: 5px 1em;
+            position: relative;
+            display: inline-block;
+            /* 效果呈現(原始) */
+            transform: translateY(0px);
+            transition: .3s;
+        }
+
+        /* 觸摸效果 (上浮效果) */
+        .header .nav a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 觸摸效果 (線左右伸展效果) */
+        .header .nav a:after {
+            content: "";
+            position: absolute;
+            /* left 和 richt 一開始隱藏 */
+            left: 50%;
+            right: 50%;
+            bottom: -5px;
+            height: 0%;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+        }
+
+        .header .nav a:hover:after {
+            left: 0;
+            right: 0;
+        }
+
+        /* ----------------------------------------------- */
+
+        .title {
+            width: 1200px;
+            margin: auto;
+            text-align: center;
+
+        }
+
+        .title h1 {
+            width: 100%;
+            /* 不要有收縮 */
+            flex-shrink: 0;
+            box-sizing: border-box;
+            font-size: 70px;
+            color: #50C1EB;
+            margin-bottom: .5em;
+            display: flex;
+        }
+
+        .title h1::before,
+        .title h1::after {
+            content: "";
+            display: block;
+            width: 4em;
+            height: 3px;
+            /* 自動填滿 */
+            flex-grow: 1;
+            background-color: #aaa;
+            margin: auto;
+        }
+
+        /* 線條距離 */
+        .title h1::before {
+            margin-right: 1em;
+        }
+
+        .title h1::after {
+            margin-left: 1em;
+        }
+
+        /* ----------------------------------------------- */
+        
+        .project h2 {
+            font-size: 35px;
+            line-height: 1.7;
+        }
+        .project h3 {
+            font-size: 30px;
+            line-height: 1.7;
+        }
+        .project p {
+            font-size: 20px;
+            line-height: 1.7;
+        }
+        .project p:hover {
+            color: #0a4496;
+        }
+        .project h2:hover {
+            color: #0a4496;
+        }
+        .project h3:hover {
+            color: #0a4496;
+        }
+
+        .video {
+            text-align: center;
+            margin-top: 3em;
+            margin-bottom: 3em;
+        }
+
+
+
+        /* ----------------------------------------------- */
+
+        .footer {
+            padding: 150px 0 0 0;
+            background: linear-gradient(-40deg, blue, #5EEBE3);
+        }
+
+        .footer .container_footer {
+            display: flex;
+            width: 1200px;
+            margin: auto;
+        }
+
+        /* 拉出距離 */
+        .footer-item {
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .footer-item h4 {
+            text-align: center;
+            font-size: 24px;
+            color: beige;
+            /* 底線 */
+            border-bottom: 1px dotted #fff;
+            /* 底線上下間距 */
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+
+        .footer-item nav {
+            display: flex;
+            /* 選項直排 */
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-item nav a {
+            color: white;
+            line-height: 1.4;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .footer-item nav a:hover {
+            color: orange;
+        }
+
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin: 150px 0 0;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+    <!-- ************************** -->
+
+    <div class="header">
+        <div class="container_header">
+            <h1 class="logo">
+                <a href="img/logo 01-1.png" class="logo">
+                    <img src="img/logo 01-2.png">
+                </a>
+            </h1>
+
+            <nav class="nav">
+                <a href="index.html">關於</a>
+                <a href="work.html">學經歷</a>
+                <a href="portfolio.html">證照與證書</a>
+                <a href="2019_working_holiday.html">旅遊</a>
+                <a href="project.html">專案</a>
+                <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ************************** -->
+
+    <div class="project">
+        <div class="title">
+            <h1 id="project01">專案</h1>
+            <h2>2023年參加「產業新尖兵試辦計畫」【嵌入式機器學習開發實作班】</h2>
+            <h3>團隊專案 - 聲控設備</h3>
+            <p>工作內容主要負責影片剪輯錄製拍攝、訓練AI</p>
+        </div>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LNgfzkqe1tY?si=lqTxn17T4JCnA9TX"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="project">
+        <div class="title">
+            <h1 id="project02">微控制</h1>
+            <h2>2023年參加「產業新尖兵試辦計畫」【嵌入式機器學習開發實作班】</h2>
+            <h3>個人專案 - 警示燈</h3>
+            <p>學習微控制設備時得到的啟發</p>
+        </div>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/iVpiFZA5Z94?si=PcRGD-7hcE50sdQh"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <!-- ************************** -->
+
+    <div class="footer">
+        <div class="container_footer">
+            <div class="footer-item">
+                <h4>關於</h4>
+                <nav>
+                    <a href="index.html">我的近況</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>學經歷</h4>
+                <nav>
+                    <a href="work.html#school">求學期間</a>
+                    <a href="work.html#work">工作就業</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>證照</h4>
+                <nav>
+                    <a href="portfolio.html#technology">科技</a>
+                    <a href="portfolio.html#travel">旅遊</a>
+                    <a href="portfolio.html#language">語言</a>
+                    <a href="portfolio.html#medical">醫療</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>旅遊</h4>
+                <nav>
+                    <a href="2019_working_holiday.html">日本旅遊</a>
+                </nav>
+            </div>
+            <div class="footer-item footer-subs">
+                <h4>專案</h4>
+                <nav>
+                    <a href="project.html#project01">團隊專案</a>
+                    <a href="project.html#project02">個人專案</a>
+                </nav>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2023
+            Weng Wei-Lun
+        </div>
+    </div>
+
+</body>
+
+</html>
